@@ -24,6 +24,7 @@ body {
     linear-gradient(rgba(255, 255, 255, 0.04) 50%, rgba(0, 0, 0, 0.08) 50%) 0 0 / 100% 4px,
     radial-gradient(circle at 50% 0%, #244a86 0, #0d1838 48%, #060914 100%);
   overflow-x: hidden;
+  touch-action: manipulation;
 }
 
 body::before {
@@ -547,6 +548,43 @@ h1 {
   flex-wrap: wrap;
 }
 
+.touch-controls {
+  display: none;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 0 0 16px;
+}
+
+.touch-button {
+  min-height: 76px;
+  padding: 8px 12px;
+  touch-action: manipulation;
+  user-select: none;
+}
+
+.touch-button span,
+.touch-button small {
+  display: block;
+}
+
+.touch-button span {
+  font-size: 30px;
+  line-height: 1;
+}
+
+.touch-button small {
+  margin-top: 4px;
+  color: #17203a;
+  font-size: 12px;
+  letter-spacing: 0;
+}
+
+.touch-button.pressed {
+  background: linear-gradient(180deg, #67ff9a, #22b85b);
+  transform: translate(2px, 2px);
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.45);
+}
+
 .difficulty-panel {
   display: flex;
   align-items: center;
@@ -614,21 +652,59 @@ kbd {
 }
 
 @media (max-width: 720px) {
+  body {
+    overscroll-behavior: none;
+  }
+
+  .game-shell {
+    width: min(100% - 16px, 520px);
+    padding: 10px 0 14px;
+  }
+
   .top-panel {
     align-items: flex-start;
     flex-direction: column;
+    gap: 10px;
+  }
+
+  .eyebrow {
+    font-size: 13px;
   }
 
   h1 {
-    font-size: 28px;
+    font-size: 25px;
   }
 
   .stats {
     width: 100%;
+    flex: none;
+    max-width: none;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 6px;
+  }
+
+  .stats div {
+    padding: 7px 6px;
+    box-shadow: inset 0 0 0 2px #405eaa, 3px 3px 0 rgba(0, 0, 0, 0.45);
+  }
+
+  .stats span {
+    font-size: 11px;
+  }
+
+  .stats strong {
+    font-size: 19px;
   }
 
   .river {
-    min-height: 520px;
+    height: min(58vh, 520px);
+    min-height: 360px;
+    margin: 12px 0;
+    border-width: 4px;
+    box-shadow:
+      inset 0 0 0 3px #57e0ff,
+      inset 0 0 0 6px #17315f,
+      5px 5px 0 rgba(0, 0, 0, 0.48);
   }
 
   .track {
@@ -652,7 +728,101 @@ kbd {
   }
 
   .canoe {
-    width: 185px;
-    height: 248px;
+    bottom: 18px;
+    width: 154px;
+    height: 206px;
+  }
+
+  .paddle {
+    top: 108px;
+    width: 138px;
+    height: 28px;
+  }
+
+  .splash {
+    width: 42px;
+    height: 34px;
+  }
+
+  .left-splash {
+    top: 96px;
+    left: 10px;
+  }
+
+  .right-splash {
+    top: 136px;
+    right: 4px;
+  }
+
+  .track-label {
+    bottom: 72px;
+    width: 50px;
+    height: 50px;
+    font-size: 23px;
+  }
+
+  .hit-line {
+    right: 7%;
+    bottom: 96px;
+    left: 7%;
+  }
+
+  .judge {
+    min-width: 150px;
+    max-width: calc(100% - 28px);
+    padding: 10px 12px;
+    font-size: 21px;
+  }
+
+  .touch-controls {
+    display: grid;
+  }
+
+  .bottom-panel {
+    gap: 10px;
+  }
+
+  .difficulty-panel {
+    width: 100%;
+    justify-content: center;
+  }
+
+  #startButton,
+  #resetButton {
+    flex: 1 1 calc(50% - 8px);
+  }
+
+  .bottom-panel p {
+    flex-basis: 100%;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 420px) {
+  h1 {
+    font-size: 22px;
+  }
+
+  button {
+    padding-inline: 12px;
+  }
+
+  .difficulty-button {
+    padding-inline: 8px;
+    font-size: 12px;
+  }
+
+  .river {
+    min-height: 330px;
+  }
+
+  .canoe {
+    width: 136px;
+    height: 182px;
+  }
+
+  .paddle {
+    top: 95px;
+    width: 124px;
   }
 }
