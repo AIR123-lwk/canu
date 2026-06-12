@@ -8,6 +8,7 @@ const startButton = document.querySelector("#startButton");
 const resetButton = document.querySelector("#resetButton");
 const riverEl = document.querySelector(".river");
 const difficultyButtons = document.querySelectorAll(".difficulty-button");
+const touchButtons = document.querySelectorAll(".touch-button");
 
 const difficultySettings = {
   easy: {
@@ -261,6 +262,20 @@ window.addEventListener("keydown", (event) => {
   }
 });
 
+function pressSideButton(button, side) {
+  if (!isPlaying) {
+    startGame();
+    return;
+  }
+
+  button.classList.add("pressed");
+  handleInput(side);
+  clearTimeout(button.pressTimerId);
+  button.pressTimerId = setTimeout(() => {
+    button.classList.remove("pressed");
+  }, 140);
+}
+
 function updateRiverBackground() {
   const scroll = distance * 0.75 + (isPlaying ? (performance.now() - startTime) * 0.035 : 0);
   const milestoneZone = distance >= 1000 && distance % 1000 < 240;
@@ -271,6 +286,12 @@ function updateRiverBackground() {
 
 startButton.addEventListener("click", startGame);
 resetButton.addEventListener("click", resetGame);
+touchButtons.forEach((button) => {
+  button.addEventListener("pointerdown", (event) => {
+    event.preventDefault();
+    pressSideButton(button, button.dataset.side);
+  });
+});
 difficultyButtons.forEach((button) => {
   button.addEventListener("click", () => {
     if (isPlaying) {
