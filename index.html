@@ -59,6 +59,97 @@
         <div class="judge" id="judge">스페이스바로 시작!</div>
       </section>
 
+      <section class="touch-controls" aria-label="Mobile paddle controls">
+        <button class="touch-button touch-left" data-side="left" type="button">
+          <span>A</span>
+          <small>LEFT</small>
+        </button>
+        <button class="touch-button touch-right" data-side="right" type="button">
+          <span>D</span>
+          <small>RIGHT</small>
+        </button>
+      </section>
+
+      <section class="bottom-panel">
+        <div class="difficulty-panel" aria-label="난이도 선택">
+          <span>난이도</span>
+          <button class="difficulty-button active" data-difficulty="easy" type="button">쉬움</button>
+          <button class="difficulty-button" data-difficulty="normal" type="button">보통</button>
+          <button class="difficulty-button" data-difficulty="hard" type="button">어려움</button>
+        </div>
+        <button id="startButton">게임 시작</button>
+        <button id="resetButton">다시하기</button>
+        <p>
+          왼쪽 노는 <kbd>A</kbd>, 오른쪽 노는 <kbd>D</kbd> 키를 눌러요.
+          타이밍을 맞추면 카누는 고정되고 노만 움직여요.
+        </p>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>장흥 물축제 카누 리듬게임</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="game-shell">
+      <section class="top-panel">
+        <div>
+          <p class="eyebrow">정남진 장흥 물축제</p>
+          <h1>카누 리듬 레이스</h1>
+        </div>
+        <div class="stats">
+          <div>
+            <span>점수</span>
+            <strong id="score">0</strong>
+          </div>
+          <div>
+            <span>콤보</span>
+            <strong id="combo">0</strong>
+          </div>
+          <div>
+            <span>거리</span>
+            <strong><span id="distance">0</span>m</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="river" aria-label="카누 리듬게임">
+        <div class="river-lines"></div>
+        <div class="track left-track">
+          <div class="track-label">A</div>
+        </div>
+        <div class="track right-track">
+          <div class="track-label">D</div>
+        </div>
+        <div class="hit-line"></div>
+        <div id="notes"></div>
+        <div class="canoe" id="canoe">
+          <div class="paddle left-paddle">
+            <span></span>
+          </div>
+          <div class="boat">
+            <div class="boat-tip top-tip"></div>
+            <div class="seat front-seat"></div>
+            <div class="rider"></div>
+            <div class="seat back-seat"></div>
+            <div class="boat-tip bottom-tip"></div>
+          </div>
+          <div class="paddle right-paddle">
+            <span></span>
+          </div>
+          <div class="splash left-splash"></div>
+          <div class="splash right-splash"></div>
+        </div>
+        <div class="judge" id="judge">스페이스바로 시작!</div>
+      </section>
+
       <section class="bottom-panel">
         <div class="difficulty-panel" aria-label="난이도 선택">
           <span>난이도</span>
